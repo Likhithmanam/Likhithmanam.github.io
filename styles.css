@@ -1,204 +1,44 @@
-:root {
-  --bg: #07111f;
-  --surface: #0f1b2e;
-  --text: #f5f7fb;
-  --muted: #a7b2c3;
-  --accent: #5eead4;
-  --accent-2: #8b5cf6;
-  --border: rgba(255, 255, 255, 0.12);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, var(--bg), #14233d);
-  color: var(--text);
-  line-height: 1.6;
+    background-color: #030014;
+    overflow-x: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-.container {
-  width: min(1120px, calc(100% - 2rem));
-  margin: 0 auto;
+::-webkit-scrollbar-track {
+    background: #030014;
 }
 
-.hero {
-  min-height: 100vh;
-  padding-bottom: 4rem;
+::-webkit-scrollbar-thumb {
+    background: #1f1947;
+    border-radius: 4px;
 }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 0;
+::-webkit-scrollbar-thumb:hover {
+    background: #3b2d7d;
 }
 
-.logo {
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* Fluid Ambient Cursor Tracking Glow */
+#custom-cursor {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    z-index: 9;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.nav-links {
-  display: flex;
-  gap: 1rem;
-  color: var(--muted);
+/* Base Setup for Parallax 3D Perspective Context */
+.project-card-container {
+    perspective: 1000px;
 }
 
-.hero-content {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 2rem;
-  align-items: center;
-  padding-top: 5rem;
-}
-
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.24em;
-  font-size: 0.8rem;
-  color: var(--accent);
-  margin-bottom: 0.7rem;
-}
-
-h1,
-h2,
-h3 {
-  line-height: 1.15;
-  margin: 0 0 0.8rem;
-}
-
-h1 {
-  font-size: clamp(2.2rem, 4vw, 4rem);
-}
-
-.hero-text,
-.about-grid p,
-.card p,
-.contact-box p {
-  color: var(--muted);
-  font-size: 1rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.8rem 1.25rem;
-  border-radius: 999px;
-  font-weight: 600;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  color: white;
-}
-
-.btn-secondary {
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-.hero-card,
-.card,
-.contact-box {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  border-radius: 1.25rem;
-  padding: 1.4rem;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-}
-
-.hero-card ul {
-  padding-left: 1.1rem;
-  color: var(--muted);
-}
-
-.section {
-  padding: 5rem 0;
-}
-
-.section-alt {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.section-heading {
-  margin-bottom: 2rem;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
-.card a {
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.contact-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-}
-
-.footer {
-  border-top: 1px solid var(--border);
-  padding: 1.2rem 0 2rem;
-  color: var(--muted);
-}
-
-.footer-inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 800px) {
-  .hero-content,
-  .about-grid,
-  .project-grid,
-  .contact-box {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .project-grid {
-    display: grid;
-  }
+.project-card {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
 }
