@@ -1,44 +1,45 @@
-body {
-    background-color: #030014;
+/* Deep Cinematic Black Overrides */
+html, body {
+    background-color: #000000 !important;
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
-/* Custom Minimalist Scrollbar */
+/* Minimalist Dark Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-    background: #030014;
+    background: #000000;
 }
-
 ::-webkit-scrollbar-thumb {
-    background: #1f1947;
-    border-radius: 4px;
+    background: #111111;
+    border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-    background: #3b2d7d;
+    background: #222222;
 }
 
-/* Fluid Ambient Cursor Tracking Glow */
+/* Cursor Glow Spotlight Tracker */
 #custom-cursor {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(236, 72, 153, 0.03) 60%, rgba(0,0,0,0) 100%);
     pointer-events: none;
     position: fixed;
     transform: translate(-50%, -50%);
     z-index: 9;
-    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Base Setup for Parallax 3D Perspective Context */
+/* 3D Context Initializers */
 .project-card-container {
-    perspective: 1000px;
+    perspective: 1200px;
 }
-
 .project-card {
     transform-style: preserve-3d;
     backface-visibility: hidden;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
