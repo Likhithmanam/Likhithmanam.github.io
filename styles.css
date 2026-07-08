@@ -3,11 +3,19 @@ html, body {
     background-color: #000000 !important;
     margin: 0;
     padding: 0;
+    width: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
-/* Minimalist Dark Custom Scrollbar */
+/* Modern & Cross-Browser Scrollbar Styling */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #111111 #000000;
+}
+
+/* Webkit Scrollbar Engines (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -24,13 +32,16 @@ html, body {
 
 /* Cursor Glow Spotlight Tracker */
 #custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 450px;
     height: 450px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(236, 72, 153, 0.03) 60%, rgba(0,0,0,0) 100%);
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(236, 72, 153, 0.03) 60%, rgba(0, 0, 0, 0) 100%);
     pointer-events: none;
-    position: fixed;
     transform: translate(-50%, -50%);
     z-index: 9;
+    will-change: transform; /* Requests hardware acceleration for fluid cursor tracking */
     transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -38,8 +49,9 @@ html, body {
 .project-card-container {
     perspective: 1200px;
 }
+
 .project-card {
     transform-style: preserve-3d;
     backface-visibility: hidden;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
