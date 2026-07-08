@@ -1,121 +1,153 @@
-// ==========================================
-// 1. THREE.JS: Continuous Particle Ecosystem
-// ==========================================
+// ===================================================
+// 1. THREE.JS: Slow-Motion Particle Double Helix (DNA)
+// ===================================================
 const canvas = document.querySelector('#bg-canvas');
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-// Generate particle fields scattered randomly
-const particlesCount = 1500;
-const posArray = new Float32Array(particlesCount * 3);
+// Group to house all individual strand structures
+const dnaGroup = new THREE.Group();
 
-for (let i = 0; i < particlesCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 6;
+const numPoints = 180; 
+const radius = 1.8;
+const helixLength = 9.0;
+const strandsGeometry1 = new THREE.BufferGeometry();
+const strandsGeometry2 = new THREE.BufferGeometry();
+const linksGeometry = new THREE.BufferGeometry();
+
+const posArray1 = [];
+const posArray2 = [];
+const linksPositions = [];
+
+for (let i = 0; i < numPoints; i++) {
+    // Generate mathematical parametric coordinates along vertical projection
+    const t = (i / numPoints) * Math.PI * 7; 
+    const y = (i / numPoints) * helixLength - (helixLength / 2);
+    
+    const x1 = Math.cos(t) * radius;
+    const z1 = Math.sin(t) * radius;
+    
+    // Invert phase vectors by exactly 180 degrees to craft the reciprocal strand
+    const x2 = Math.cos(t + Math.PI) * radius;
+    const z2 = Math.sin(t + Math.PI) * radius;
+
+    posArray1.push(x1, y, z1);
+    posArray2.push(x2, y, z2);
+
+    // Build bridging baseline rungs intermittently
+    if (i % 3 === 0) {
+        linksPositions.push(x1, y, z1);
+        linksPositions.push(x2, y, z2);
+    }
 }
 
-const particlesGeometry = new THREE.BufferGeometry();
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+strandsGeometry1.setAttribute('position', new THREE.Float32BufferAttribute(posArray1, 3));
+strandsGeometry2.setAttribute('position', new THREE.Float32BufferAttribute(posArray2, 3));
+linksGeometry.setAttribute('position', new THREE.Float32BufferAttribute(linksPositions, 3));
 
-// Styled interactive points
-const particlesMaterial = new THREE.PointsMaterial({
-    size: 0.015,
-    color: '#818cf8',
-    transparent: true,
-    opacity: 0.7,
-    blending: THREE.AdditiveBlending
-});
+// Styled node textures
+const materialStrand1 = new THREE.PointsMaterial({ size: 0.04, color: '#818cf8', transparent: true, opacity: 0.8 });
+const materialStrand2 = new THREE.PointsMaterial({ size: 0.04, color: '#f472b6', transparent: true, opacity: 0.8 });
+const materialLinks = new THREE.LineBasicMaterial({ color: '#4b5563', transparent: true, opacity: 0.25 });
 
-const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-scene.add(particlesMesh);
-camera.position.z = 2;
+const points1 = new THREE.Points(strandsGeometry1, materialStrand1);
+const points2 = new THREE.Points(strandsGeometry2, materialStrand2);
+const lines = new THREE.LineSegments(linksGeometry, materialLinks);
 
-// Persistent frame request rotation loop
+dnaGroup.add(points1, points2, lines);
+scene.add(dnaGroup);
+
+// Position model out towards right view bounds on wide monitors
+if(window.innerWidth > 768) {
+    dnaGroup.position.x = 2.0;
+}
+camera.position.z = 6;
+
+// Animation Loop: Hyper-smooth, slow-motion rotation and float vectors
 const clock = new THREE.Clock();
-const animateBg = () => {
+const animate = () => {
     const elapsedTime = clock.getElapsedTime();
-    particlesMesh.rotation.y = elapsedTime * 0.05;
-    particlesMesh.rotation.x = elapsedTime * 0.02;
     
-    renderer.render(scene, camera);
-    window.requestAnimationFrame(animateBg);
-};
-animateBg();
+    // Slow rotational velocity metrics
+    dnaGroup.rotation.y = elapsedTime * 0.12;
+    dnaGroup.rotation.x = Math.sin(elapsedTime * 0.05) * 0.1;
+    
+    // Subtle float oscillation variance
+    dnaGroup.position.y = Math.sin(elapsedTime * 0.3) * 0.15;
 
-// Handle responsive window adjustments
+    renderer.render(scene, camera);
+    window.requestAnimationFrame(animate);
+};
+animate();
+
+// Handle cross-device resizing configurations 
 window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    dnaGroup.position.x = window.innerWidth > 768 ? 2.0 : 0.0;
 });
 
-
-// ==========================================
-// 2. GSAP: Elegant Page Entrance Transitions
-// ==========================================
+// ===================================================
+// 2. GSAP: Entrance Presentation Layout Tweaks
+// ===================================================
 window.addEventListener('DOMContentLoaded', () => {
     gsap.to('.hero-reveal', {
         opacity: 1,
         y: 0,
-        duration: 1.2,
+        duration: 1.5,
         ease: 'power4.out',
-        delay: 0.2
+        delay: 0.1
     });
 });
 
-
-// ==========================================
-// 3. CURSOR: Magnetic Tracking & Interactive Glow
-// ==========================================
+// ===================================================
+// 3. CURSOR: Spotlight Tracking Adjustments
+// ===================================================
 const cursorGlow = document.getElementById('custom-cursor');
-
 window.addEventListener('mousemove', (e) => {
     gsap.to(cursorGlow, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.3,
-        ease: 'power2.out'
+        duration: 0.4,
+        ease: 'power3.out'
     });
 });
 
-// Expand cursor spotlight radius when hovering clickables
-document.querySelectorAll('a, button, .project-card').forEach(elem => {
-    elem.addEventListener('mouseenter', () => {
-        cursorGlow.style.width = '550px';
-        cursorGlow.style.height = '550px';
+// Expand cursor spotlight footprint over critical links/cards
+document.querySelectorAll('a, .project-card, .grid > div').forEach(target => {
+    target.addEventListener('mouseenter', () => {
+        cursorGlow.style.width = '600px';
+        cursorGlow.style.height = '600px';
     });
-    elem.addEventListener('mouseleave', () => {
-        cursorGlow.style.width = '400px';
-        cursorGlow.style.height = '400px';
+    target.addEventListener('mouseleave', () => {
+        cursorGlow.style.width = '450px';
+        cursorGlow.style.height = '450px';
     });
 });
 
-
-// ==========================================
-// 4. INTERACTION: Smooth 3D Hover Tilt 
-// ==========================================
-const cards = document.querySelectorAll('.project-card');
-
-cards.forEach(card => {
+// ===================================================
+// 4. PARALLAX: 3D Inertial Tilting Card Triggers
+// ===================================================
+document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - (rect.width / 2);
-        const y = e.clientY - rect.top - (rect.height / 2);
+        const bounds = card.getBoundingClientRect();
+        const mouseX = e.clientX - bounds.left - (bounds.width / 2);
+        const mouseY = e.clientY - bounds.top - (bounds.height / 2);
         
-        // Form mathematical boundaries mapping coordinate to degree angles
-        const tiltX = (y / (rect.height / 2)) * -10;
-        const tiltY = (x / (rect.width / 2)) * 10;
+        const degreesX = (mouseY / (bounds.height / 2)) * -8;
+        const degreesY = (mouseX / (bounds.width / 2)) * 8;
 
         gsap.to(card, {
-            rotateX: tiltX,
-            rotateY: tiltY,
-            transformPerspective: 1000,
-            scale: 1.02,
+            rotateX: degreesX,
+            rotateY: degreesY,
+            scale: 1.01,
             duration: 0.2,
-            ease: 'power1.out'
+            ease: 'power2.out'
         });
     });
 
@@ -124,8 +156,8 @@ cards.forEach(card => {
             rotateX: 0,
             rotateY: 0,
             scale: 1,
-            duration: 0.5,
-            ease: 'power2.out'
+            duration: 0.6,
+            ease: 'power3.out'
         });
     });
 });
