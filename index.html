@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Likhith M | Premium Analytics Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,9 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#f8fafc] text-slate-700 font-sans overflow-x-hidden relative">
+<body class="bg-[#f8fafc] text-slate-700 font-sans overflow-x-hidden theme-transition">
 
-    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10 block pointer-events-none"></canvas>
+    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
 
     <div id="custom-cursor"></div>
     <div id="custom-cursor-dot"></div>
@@ -97,42 +97,29 @@
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Scikit-learn</span>
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">XGBoost</span>
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">SHAP</span>
-                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Matplotlib</span>
                     </div>
                 </div>
                 <div class="motion-card p-5 rounded-xl bg-white/85 border border-emerald-950/10 shadow-md content-block">
                     <h3 class="text-slate-900 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-slate-100 pb-1 sub-heading-glow">Analytics & Engineering</h3>
                     <div class="flex flex-wrap gap-1.5">
                         <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">EDA</span>
-                        <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">ETL</span>
-                        <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">Data Cleaning</span>
-                        <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">Feature Engineering</span>
+                        <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">ETL Frameworks</span>
+                        <span class="px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">Automation</span>
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Predictive Modeling</span>
-                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Classification</span>
-                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Regression</span>
-                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Workflow Automation</span>
+                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Feature Engineering</span>
+                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Explainable AI</span>
                     </div>
                 </div>
                 <div class="motion-card p-5 rounded-xl bg-white/85 border border-emerald-950/10 shadow-md content-block">
                     <h3 class="text-slate-900 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-slate-100 pb-1 sub-heading-glow">Databases & Cloud</h3>
                     <div class="flex flex-wrap gap-1.5">
-                        <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">PostgreSQL</span>
-                        <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">Snowflake</span>
                         <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">AWS Ecosystem</span>
+                        <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">Snowflake</span>
+                        <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">PostgreSQL</span>
                         <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">Tableau</span>
                         <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-slate-700 tag-item">MySQL</span>
                         <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-slate-700 tag-item">MongoDB</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="p-4 rounded-xl border border-emerald-950/10 bg-white/60 shadow-sm mt-3 content-block">
-                <span class="text-[9px] font-mono text-slate-400 block mb-1.5 font-bold uppercase sub-heading-glow">Core Functional Competencies</span>
-                <div class="flex flex-wrap gap-1">
-                    <span class="text-[10px] font-semibold bg-slate-100 px-2.5 py-1 rounded border border-emerald-950/10 text-slate-600 tag-item">Cross-functional Collaboration</span>
-                    <span class="text-[10px] font-semibold bg-slate-100 px-2.5 py-1 rounded border border-emerald-950/10 text-slate-600 tag-item">Stakeholder Communication</span>
-                    <span class="text-[10px] font-semibold bg-slate-100 px-2.5 py-1 rounded border border-emerald-950/10 text-slate-600 tag-item">Research & Analysis</span>
-                    <span class="text-[10px] font-semibold bg-slate-100 px-2.5 py-1 rounded border border-emerald-950/10 text-slate-600 tag-item">Agile Team Collaboration</span>
                 </div>
             </div>
         </section>
@@ -151,12 +138,9 @@
                         </div>
                         <span class="text-[10px] font-mono text-slate-400 font-bold sub-heading-glow">Telecom Network Infrastructure</span>
                     </div>
-                    <ul class="space-y-2 text-xs text-slate-600 list-disc list-inside leading-relaxed font-medium">
-                        <li>Analyzed operational datasets using Python and SQL to identify trends, anomalies, and performance issues across more than 40 network locations.</li>
-                        <li>Built reusable data processing workflows to clean, validate, and transform datasets, improving reporting accuracy and consistency.</li>
-                        <li>Automated recurring reporting processes using Python and SQL, reducing manual reporting effort by over five hours per week.</li>
-                        <li>Performed exploratory data analysis to uncover operational bottlenecks and support process improvement initiatives.</li>
-                    </ul>
+                    <p class="text-slate-700 text-sm leading-relaxed mb-4 font-medium">
+                        Managed infrastructure matrix validations using <span class="highlight-word">Python and SQL architectures</span> to track telemetry logs across 40+ system locations, deploying automated workflows that reclaimed 5+ manual reporting hours weekly.
+                    </p>
                 </div>
             </div>
         </section>
@@ -170,21 +154,11 @@
                 <div class="motion-card p-6 rounded-xl bg-white/80 border border-emerald-950/10 shadow-md space-y-2 content-block">
                     <div class="flex justify-between items-center">
                         <span class="text-[10px] font-mono text-emerald-700 font-bold block sub-heading-glow">Advanced Predictive Systems</span>
-                        <span class="text-[10px] font-mono text-slate-400 font-bold">Capstone Project</span>
+                        <span class="text-[10px] font-mono text-slate-400 font-bold">Capstone Project | 2026</span>
                     </div>
                     <h3 class="text-sm font-serif font-bold text-slate-900 continuous-text-pulse">Predicting Treatment-Seeking Behavior in Behavioral Health</h3>
                     <p class="text-slate-700 text-sm leading-relaxed font-medium">
-                       Analyzed over 225,000 healthcare records using Python, SQL, Pandas, and Scikit-learn to identify factors influencing treatment-seeking behavior. Developed XGBoost classification models achieving 92.3% ROC-AUC through feature engineering and model optimization. Applied SHAP explainability techniques to interpret model predictions and translate results into actionable business insights, and deployed corporate Tableau visual dashboards to communicate findings cleanly to stakeholders.
-                    </p>
-                </div>
-                <div class="motion-card p-6 rounded-xl bg-white/80 border border-emerald-950/10 shadow-md space-y-2 content-block">
-                    <div class="flex justify-between items-center">
-                        <span class="text-[10px] font-mono text-emerald-700 font-bold block sub-heading-glow">Statistical Analytics</span>
-                        <span class="text-[10px] font-mono text-slate-400 font-bold">Applied Field Study</span>
-                    </div>
-                    <h3 class="text-sm font-serif font-bold text-slate-900 continuous-text-pulse">Predicting Psychological Risk Factors of Longevity</h3>
-                    <p class="text-slate-700 text-sm leading-relaxed font-medium">
-                       Analyzed large-scale behavioral health survey data to identify psychological indicators associated with long-term health outcomes. Conducted exploratory data analysis, feature engineering, and statistical modeling to uncover meaningful insights, collaborating with a four-member team to develop evidence-based recommendations.
+                       Analyzed over 225,000 healthcare records using Python, SQL, Pandas, and Scikit-learn to identify factors influencing treatment-seeking behavior. Developed an advanced gradient boosted ensemble framework using <span class="highlight-word">XGBoost Classification Models</span> that achieved a high performance threshold of <span class="highlight-word">92.3% ROC-AUC</span>. Applied SHAP matrices to translate numeric weights into clear medical insights, and deployed corporate Tableau visual dashboards to communicate findings cleanly.
                     </p>
                 </div>
             </div>
