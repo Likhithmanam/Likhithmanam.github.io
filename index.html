@@ -4,27 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Likhith M | Executive Analytics Portfolio</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Motion Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="text-slate-200 font-sans overflow-x-hidden bg-[#05070f]">
+<body class="text-slate-200 font-sans overflow-x-hidden bg-[#02040a]">
 
-    <!-- Smash Hit Atmospheric Background Canvas Layer -->
     <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
 
-    <!-- Custom Animated Magnetic Trail Cursor -->
     <div id="custom-cursor"></div>
     <div id="custom-cursor-dot"></div>
 
-    <!-- Posh Header Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 border-b border-slate-800/30 bg-[#05070f]/40 backdrop-blur-md px-6 md:px-16 py-4 flex justify-between items-center">
+    <nav class="fixed top-0 left-0 w-full z-50 border-b border-emerald-950/20 bg-[#02040a]/40 backdrop-blur-md px-6 md:px-16 py-4 flex justify-between items-center">
         <a href="#" class="text-lg font-serif font-black tracking-widest bg-gradient-to-r from-emerald-400 via-teal-400 to-slate-400 bg-clip-text text-transparent">LM</a>
         <div class="flex gap-6 text-[10px] font-mono tracking-widest">
             <a href="#about" class="hover:text-emerald-400 transition-colors">ABOUT</a>
@@ -36,85 +31,89 @@
         </div>
     </nav>
 
-    <!-- Content Layout Grid Stack -->
-    <main class="max-w-4xl mx-auto px-6 relative z-20 pt-28 pb-12 space-y-12">
+    <main class="max-w-4xl mx-auto px-6 relative z-20 pt-28 pb-12 space-y-10">
         
-        <!-- About Section -->
-        <section id="about" class="space-y-4">
+        <section id="about" class="space-y-3">
             <span class="text-emerald-400 font-mono tracking-widest text-[9px] uppercase block opacity-0 left-slide">Business Analytics & Data Science</span>
             <h1 id="hero-name" class="text-3xl md:text-5xl font-serif font-black tracking-tight leading-tight opacity-0">
                 <span class="text-white">Likhith M</span><br>
                 <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-slate-400 bg-clip-text text-transparent">Actionable Business Impact</span>
             </h1>
-            <p class="text-slate-300 text-xs md:text-sm max-w-3xl leading-relaxed opacity-0 left-slide font-medium bg-[#05070f]/60 p-3 rounded-lg backdrop-blur-sm">
-                Business Analytics graduate with hands-on experience in data science, predictive modeling, and business intelligence using a modern analytics stack[cite: 4]. Skilled in developing end-to-end data processing pipelines, building machine learning frameworks, and designing executive analytics layers to solve enterprise problems[cite: 4].
+            <p class="text-slate-300 text-xs md:text-sm max-w-3xl leading-relaxed opacity-0 left-slide font-medium bg-[#02040a]/60 p-3 rounded-lg backdrop-blur-sm">
+                Business Analytics graduate with hands-on experience in data science, predictive modeling, and business intelligence using a modern analytics stack. Skilled in developing end-to-end data processing pipelines, building machine learning frameworks, and designing executive analytics layers to solve enterprise problems.
             </p>
             
-            <div class="grid sm:grid-cols-2 gap-4 pt-2 opacity-0 left-slide">
-                <div class="p-5 rounded-xl border border-slate-800 bg-slate-950/70 shadow-lg backdrop-blur-md">
+            <div class="grid sm:grid-cols-2 gap-4 pt-1 opacity-0 left-slide">
+                <div class="p-5 rounded-xl border border-emerald-950/40 bg-slate-950/70 shadow-lg backdrop-blur-md">
                     <span class="text-[10px] font-mono text-emerald-400 block mb-1 font-bold">MAY 2026</span>
                     <h4 class="font-serif font-bold text-white text-sm tracking-wide">Master in Business Analytics</h4>
-                    <p class="text-[11px] text-slate-300 font-semibold">University of North Texas[cite: 4]</p>
-                    <p class="text-[11px] text-slate-400 mt-2 font-mono leading-normal">Coursework: Machine Learning, Advanced Predictive Analytics, Data Mining, Database Management[cite: 3]</p>
+                    <p class="text-[11px] text-slate-300 font-semibold">University of North Texas</p>
+                    <p class="text-[11px] text-slate-400 mt-2 font-mono leading-normal font-medium">Coursework: Machine Learning, Advanced Predictive Analytics, Data Mining, Database Management, Data Visualization, Business Intelligence, Statistical Analysis</p>
                 </div>
-                <div class="p-5 rounded-xl border border-slate-800 bg-slate-950/70 shadow-lg backdrop-blur-md">
+                <div class="p-5 rounded-xl border border-emerald-950/40 bg-slate-950/70 shadow-lg backdrop-blur-md">
                     <span class="text-[10px] font-mono text-slate-400 block mb-1 font-bold">2024</span>
                     <h4 class="font-serif font-bold text-white text-sm tracking-wide">Bachelor of Engineering</h4>
-                    <p class="text-[11px] text-slate-300 font-semibold">Sathyabama University | Electronics and Communication Engineering[cite: 4]</p>
+                    <p class="text-[11px] text-slate-300 font-semibold">Sathyabama University | Electronics and Communication Engineering</p>
+                    <p class="text-[11px] text-slate-400 mt-2 font-mono leading-normal font-medium">Foundational focus on engineering systems, data infrastructure, signal protocols, networks, and advanced data modeling logic matrices.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Technical Expertise -->
-        <section id="skills" class="space-y-4">
-            <div class="border-b border-slate-800 pb-1">
+        <section id="skills" class="space-y-3">
+            <div class="border-b border-emerald-950/40 pb-1">
                 <span class="text-emerald-400 font-mono text-[9px] tracking-widest uppercase">TECHNICAL MATRIX</span>
                 <h2 class="text-xl font-serif font-black text-white tracking-wider">Technical Expertise</h2>
             </div>
             <div class="grid sm:grid-cols-3 gap-4">
-                <div class="p-5 rounded-xl bg-slate-950/70 border border-slate-800 shadow-lg backdrop-blur-md">
-                    <h3 class="text-slate-300 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Languages</h3>
+                <div class="p-5 rounded-xl bg-slate-950/70 border border-emerald-950/30 shadow-lg backdrop-blur-md">
+                    <h3 class="text-slate-300 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-emerald-950/30 pb-1">Languages & Libraries</h3>
                     <div class="flex flex-wrap gap-1.5">
                         <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-emerald-400">Python</span>
                         <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-emerald-400">SQL</span>
                         <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-emerald-400">R</span>
+                        <span class="px-2 py-0.5 bg-slate-950 rounded text-[11px] font-semibold text-slate-300">Pandas</span>
+                        <span class="px-2 py-0.5 bg-slate-950 rounded text-[11px] font-semibold text-slate-300">NumPy</span>
+                        <span class="px-2 py-0.5 bg-slate-950 rounded text-[11px] font-semibold text-slate-300">Scikit-learn</span>
+                        <span class="px-2 py-0.5 bg-slate-950 rounded text-[11px] font-semibold text-slate-300">XGBoost</span>
                     </div>
                 </div>
-                <div class="p-5 rounded-xl bg-slate-950/70 border border-slate-800 shadow-lg backdrop-blur-md">
-                    <h3 class="text-slate-300 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">GenAI & Data</h3>
+                <div class="p-5 rounded-xl bg-slate-950/70 border border-emerald-950/30 shadow-lg backdrop-blur-md">
+                    <h3 class="text-slate-300 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-emerald-950/30 pb-1">Analytics & Engineering</h3>
                     <div class="flex flex-wrap gap-1.5">
-                        <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">Pandas</span>
-                        <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">XGBoost</span>
-                        <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">Scikit-learn</span>
-                        <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">SHAP</span>
+                        <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">EDA</span>
+                        <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">ETL Pipelines</span>
+                        <span class="px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">Automation</span>
+                        <span class="px-2 py-0.5 bg-slate-950 rounded text-[11px] font-semibold text-slate-300">Predictive Modeling</span>
+                        <span class="px-2 py-0.5 bg-slate-950 rounded text-[11px] font-semibold text-slate-300">Feature Engineering</span>
+                        <span class="px-2 py-0.5 bg-slate-950 rounded text-[11px] font-semibold text-slate-300">Explainable AI (SHAP)</span>
                     </div>
                 </div>
-                <div class="p-5 rounded-xl bg-slate-950/70 border border-slate-800 shadow-lg backdrop-blur-md">
-                    <h3 class="text-slate-300 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-slate-800 pb-1">Cloud & Infrastructure</h3>
+                <div class="p-5 rounded-xl bg-slate-950/70 border border-emerald-950/30 shadow-lg backdrop-blur-md">
+                    <h3 class="text-slate-300 font-mono font-bold text-xs uppercase tracking-widest mb-3 border-b border-emerald-950/30 pb-1">Cloud & Data Stack</h3>
                     <div class="flex flex-wrap gap-1.5">
-                        <span class="tag px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">AWS</span>
+                        <span class="tag px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">AWS (S3/Lambda)</span>
                         <span class="tag px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">Snowflake</span>
                         <span class="tag px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">PostgreSQL</span>
                         <span class="tag px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-white">Tableau</span>
+                        <span class="tag px-2.5 py-1 bg-slate-900 rounded text-xs font-bold text-slate-400">Splunk</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Predictive Rock Paper Scissors Card -->
-        <section id="activities" class="space-y-4">
-            <div class="border-b border-slate-800 pb-1">
+        <section id="activities" class="space-y-3">
+            <div class="border-b border-emerald-950/40 pb-1">
                 <span class="text-emerald-400 font-mono text-[9px] tracking-widest uppercase">CREATIVE CHALLENGE</span>
                 <h2 class="text-xl font-serif font-black text-white tracking-wider">Predictive Systems Intelligence</h2>
             </div>
-            <div class="p-6 rounded-2xl border border-slate-800 bg-slate-950/80 shadow-2xl backdrop-blur-md text-center max-w-2xl mx-auto space-y-4">
+            <div class="p-6 rounded-2xl border border-emerald-950/30 bg-slate-950/80 shadow-2xl backdrop-blur-md text-center max-w-2xl mx-auto space-y-4">
                 <h3 class="text-sm font-bold text-white font-mono uppercase tracking-wider">Predictive Rock-Paper-Scissors</h3>
-                <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed">This bot simulates an optimized <strong>Markov Chain</strong> workflow loop to study pattern history inputs and instantly map your next real-time move strategy.</p>
-                <div class="text-base font-black text-white font-mono space-x-6 py-2 bg-slate-900/60 rounded-xl max-w-xs mx-auto border border-slate-800">
+                <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed font-medium">This bot simulates an optimized <strong>Markov Chain</strong> workflow loop to study pattern history inputs and instantly map your next real-time move strategy.</p>
+                <div class="text-base font-black text-white font-mono space-x-6 py-2 bg-slate-900/60 rounded-xl max-w-xs mx-auto border border-emerald-950/20">
                     <span>You: <span id="user-score" class="text-emerald-400">0</span></span>
                     <span>AI: <span id="ai-score" class="text-rose-400">0</span></span>
                 </div>
-                <div id="game-status" class="text-xs text-slate-400 font-mono py-4 bg-slate-900/40 rounded-xl border border-slate-800/40">Make your move below to seed the engine's probability array.</div>
+                <div id="game-status" class="text-xs text-slate-400 font-mono py-4 bg-slate-900/40 rounded-xl border border-emerald-950/10 font-semibold">Make your move below to seed the engine's probability array.</div>
                 <div class="flex justify-center gap-3">
                     <button onclick="playGame('Rock')" class="px-4 py-2 bg-white text-slate-900 font-bold rounded-xl text-xs hover:bg-emerald-400 hover:text-white cursor-pointer transition-all duration-300">✊ Rock</button>
                     <button onclick="playGame('Paper')" class="px-4 py-2 bg-white text-slate-900 font-bold rounded-xl text-xs hover:bg-emerald-400 hover:text-white cursor-pointer transition-all duration-300">✋ Paper</button>
@@ -123,67 +122,70 @@
             </div>
         </section>
 
-        <!-- Professional Timeline -->
-        <section id="experience" class="space-y-4">
-            <div class="border-b border-slate-800 pb-1">
+        <section id="experience" class="space-y-3">
+            <div class="border-b border-emerald-950/40 pb-1">
                 <span class="text-emerald-400 font-mono text-[9px] tracking-widest uppercase">TIMELINE</span>
                 <h2 class="text-xl font-serif font-black text-white tracking-wider">Work History</h2>
             </div>
-            <div class="relative border-l-2 border-slate-800 ml-1 pl-6">
-                <div class="p-5 rounded-xl border border-slate-800 bg-slate-950/70 shadow-lg backdrop-blur-md">
-                    <h3 class="font-serif font-bold text-white text-base">Data Analytics Intern</h3>
-                    <p class="text-xs text-emerald-400 font-mono mb-2">BSNL | Hyderabad, India[cite: 3]</p>
+            <div class="relative border-l-2 border-emerald-950/30 ml-1 pl-6">
+                <div class="p-5 rounded-xl border border-emerald-950/30 bg-slate-950/70 shadow-lg backdrop-blur-md">
+                    <div class="flex justify-between items-start flex-wrap gap-2 mb-2">
+                        <div>
+                            <h3 class="font-heading font-bold text-white text-sm">Data Analytics Intern</h3>
+                            <p class="text-xs text-emerald-400 font-mono">BSNL | Hyderabad, India</p>
+                        </div>
+                        <span class="text-[10px] font-mono text-slate-400">Telecom Network Infrastructure</span>
+                    </div>
                     <ul class="space-y-2 text-xs text-slate-300 list-disc list-inside leading-relaxed font-medium">
-                        <li>Analyzed massive network telemetry using Python and SQL configurations across 40+ engineering locations[cite: 3].</li>
-                        <li>Automated business intelligence pipelines, successfully reclaiming 5+ business hours weekly[cite: 3].</li>
+                        <li>Analyzed granular telecom infrastructure operational datasets using Python and SQL script matrices to identify trends, performance anomalies, and service quality issues across more than 40 separate network locations.</li>
+                        <li>Built and automated reusable data processing ETL workflows to clean, validate, and transform sparse network datasets, enhancing corporate reporting consistency and accuracy across multiple database systems.</li>
+                        <li>Slashed manual overhead effort by over five hours per week by designing recurring, scheduled metric report automation scripts.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Projects Showcase -->
-        <section id="projects" class="space-y-4">
-            <div class="border-b border-slate-800 pb-1">
+        <section id="projects" class="space-y-3">
+            <div class="border-b border-emerald-950/40 pb-1">
                 <span class="text-emerald-400 font-mono text-[10px] tracking-widest uppercase">PRODUCTION SHOWCASE</span>
                 <h2 class="text-xl font-serif font-black text-white tracking-wider">Featured Research & Projects</h2>
             </div>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="p-6 rounded-xl bg-slate-950/70 border border-slate-800 shadow-xl backdrop-blur-md flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <span class="text-[10px] font-mono text-emerald-400 font-bold block">Healthcare Analytics</span>
-                        <h3 class="text-sm font-serif font-bold text-white">Predicting Behavior in Behavioral Health</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed font-medium">
-                           Evaluated 225,000+ patient database clusters via custom XGBoost architectures to yield a 92.3% ROC-AUC operational model accuracy index[cite: 3].
-                        </p>
+            <div class="space-y-4">
+                <div class="p-6 rounded-xl bg-slate-950/70 border border-emerald-950/30 shadow-xl backdrop-blur-md space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-mono text-emerald-400 font-bold block">Advanced Predictive Systems</span>
+                        <span class="text-[10px] font-mono text-slate-500">Capstone Project</span>
                     </div>
+                    <h3 class="text-sm font-serif font-bold text-white">Predicting Treatment-Seeking Behavior in Behavioral Health</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed font-medium">
+                       Evaluated over 225,000 deep behavioral healthcare records using a data processing array composed of Python, SQL, Pandas, and Scikit-learn to map out key clinical factors influencing patient admissions. Developed an advanced gradient boosted ensemble framework using XGBoost classification models that achieved a performance boundary metric of 92.3% ROC-AUC. Applied SHAP matrices to translate numeric weights into clear medical insights, and deployed corporate Tableau visual dashboards to communicate findings cleanly.
+                    </p>
                 </div>
-                <div class="p-6 rounded-xl bg-slate-950/70 border border-slate-800 shadow-xl backdrop-blur-md flex flex-col justify-between">
-                    <div class="space-y-2">
-                        <span class="text-[10px] font-mono text-emerald-400 font-bold block">Statistical Risk Modeling</span>
-                        <h3 class="text-sm font-serif font-bold text-white">Psychological Risk Factors of Longevity</h3>
-                        <p class="text-slate-300 text-xs leading-relaxed font-medium">
-                           Conducted multi-variable exploratory data analytics and feature engineering over health survey records to quantify long-term longevity metrics[cite: 3].
-                        </p>
+                <div class="p-6 rounded-xl bg-slate-950/70 border border-emerald-950/30 shadow-xl backdrop-blur-md space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-mono text-emerald-400 font-bold block">Statistical Science</span>
+                        <span class="text-[10px] font-mono text-slate-500">Applied Biostatistics</span>
                     </div>
+                    <h3 class="text-sm font-serif font-bold text-white">Predicting Psychological Risk Factors of Longevity</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed font-medium">
+                       Analyzed large-scale behavioral and psychological health survey datasets using R routines to identify significant behavioral indicators associated with long-term survival rates. Handled complete exploratory data analysis (EDA), variable transformations, and mathematical modeling to package analytics results into clear early-intervention guidelines.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Twin-Component Developer Contact Matrix -->
         <section id="contact" class="space-y-4">
-            <div class="border-b border-slate-800 pb-1">
+            <div class="border-b border-emerald-950/40 pb-1">
                 <span class="text-emerald-400 font-mono text-[9px] tracking-widest uppercase">SECURE SHELL SYSTEM</span>
                 <h2 class="text-xl font-serif font-black text-white tracking-wider">Connect With Us</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-4 items-stretch">
-                
-                <!-- Terminal Window -->
-                <div class="rounded-xl border border-slate-800 bg-[#0f141c] text-xs font-mono shadow-2xl overflow-hidden flex flex-col h-full">
-                    <div class="bg-[#1a2330] px-4 py-2 flex items-center justify-between border-b border-slate-800">
+                <div class="rounded-xl border border-emerald-950/30 bg-[#060913] text-xs font-mono shadow-2xl overflow-hidden flex flex-col h-full">
+                    <div class="bg-[#0b1120] px-4 py-2 flex items-center justify-between border-b border-emerald-950/20">
                         <div class="flex gap-1.5">
-                            <span class="w-3 h-3 rounded-full bg-rose-500 block"></span>
-                            <span class="w-3 h-3 rounded-full bg-amber-400 block"></span>
-                            <span class="w-3 h-3 rounded-full bg-emerald-500 block"></span>
+                            <span class="w-2.5 h-3 rounded-full bg-rose-500 block"></span>
+                            <span class="w-2.5 h-3 rounded-full bg-amber-400 block"></span>
+                            <span class="w-2.5 h-3 rounded-full bg-emerald-500 block"></span>
                         </div>
                         <span class="text-slate-400 text-[10px]">contact_likhith.py</span>
                         <div></div>
@@ -192,7 +194,7 @@
                         <p class="text-slate-500">&gt;&gt;&gt; import developer</p>
                         <p class="text-slate-500">&gt;&gt;&gt; likhith = developer.get("Likhith M")</p>
                         <p class="text-slate-500">&gt;&gt;&gt; likhith.contact()</p>
-                        <div class="text-amber-400 pl-4 bg-slate-900/50 p-3 rounded-lg border border-slate-800/40">
+                        <div class="text-emerald-300 pl-4 bg-slate-950/60 p-3 rounded-lg border border-emerald-950/20">
                             <p>{</p>
                             <p class="pl-4">"email": <a href="mailto:likhithmanam@gmail.com" class="text-emerald-400 underline">"likhithmanam@gmail.com"</a>,</p>
                             <p class="pl-4">"phone": <a href="tel:9402684542" class="text-emerald-400 underline">"940-268-4542"</a>,</p>
@@ -203,26 +205,23 @@
                         <p class="text-slate-500">&gt;&gt;&gt; <span class="animate-pulse">|</span></p>
                     </div>
                 </div>
-
-                <!-- Form Window -->
-                <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-6 shadow-2xl backdrop-blur-md flex flex-col justify-between h-full">
+                <div class="rounded-xl border border-emerald-950/30 bg-slate-950/70 p-6 shadow-2xl backdrop-blur-md flex flex-col justify-between h-full">
                     <form class="space-y-3 font-medium text-xs text-slate-300" onsubmit="event.preventDefault();">
                         <div>
                             <label class="block mb-1 font-bold text-white">Name *</label>
-                            <input type="text" placeholder="John Doe" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-white font-semibold focus:outline-none focus:border-emerald-500">
+                            <input type="text" placeholder="John Doe" class="w-full bg-slate-900 border border-emerald-950/20 rounded-lg p-2.5 text-white font-semibold focus:outline-none focus:border-emerald-500">
                         </div>
                         <div>
                             <label class="block mb-1 font-bold text-white">Email *</label>
-                            <input type="email" placeholder="john@example.com" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-white font-semibold focus:outline-none focus:border-emerald-500">
+                            <input type="email" placeholder="john@example.com" class="w-full bg-slate-900 border border-emerald-950/20 rounded-lg p-2.5 text-white font-semibold focus:outline-none focus:border-emerald-500">
                         </div>
                         <div>
                             <label class="block mb-1 font-bold text-white">Message *</label>
-                            <textarea rows="3" placeholder="Hello Likhith, I am reaching out regarding..." class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-white font-semibold focus:outline-none focus:border-emerald-500 resize-none"></textarea>
+                            <textarea rows="3" placeholder="Hello Likhith..." class="w-full bg-slate-900 border border-emerald-950/20 rounded-lg p-2.5 text-white font-semibold focus:outline-none focus:border-emerald-500 resize-none"></textarea>
                         </div>
                         <button type="submit" class="w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-black rounded-lg tracking-wider text-xs uppercase hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer transition-all duration-300">Send Message</button>
                     </form>
                 </div>
-
             </div>
         </section>
     </main>
