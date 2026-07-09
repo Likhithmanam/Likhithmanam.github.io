@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Likhith M | Premium Analytics Portfolio</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Premium Posh Fonts Integration -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- UI Motion Engines -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#f8fafc] text-slate-700 font-sans overflow-x-hidden theme-transition">
 
+    <!-- Interactive Hypnotic Reality-Warp Background Canvas Layer -->
     <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
 
+    <!-- Custom Animated Magnetic Trail Cursor -->
     <div id="custom-cursor"></div>
     <div id="custom-cursor-dot"></div>
 
+    <!-- Navigation Header -->
     <nav class="fixed top-0 left-0 w-full z-50 border-b border-emerald-950/10 backdrop-blur-md px-6 md:px-16 py-4 flex justify-between items-center bg-white/50 text-slate-900">
         <a href="#" class="text-lg font-serif font-black tracking-widest text-emerald-700">LM</a>
         <div class="flex items-center gap-6">
@@ -33,11 +39,14 @@
         </div>
     </nav>
 
+    <!-- Content Layout Stack -->
     <main class="max-w-4xl mx-auto px-6 relative z-20 pt-28 pb-12 space-y-12">
         
+        <!-- About Section -->
         <section id="about" class="space-y-4">
             <span class="text-emerald-700 font-mono tracking-widest text-[9px] uppercase block opacity-0 left-slide font-bold tracking-pulse">Business Analytics & Data Science</span>
             
+            <!-- Continuous Floating Heading Stream -->
             <h1 id="hero-name" class="text-4xl md:text-6xl font-serif font-black tracking-tight leading-none text-slate-900 overflow-hidden py-2 continuous-wave-title">
                 Likhith M
                 <span class="text-emerald-700 text-2xl md:text-4xl block mt-2 font-medium tracking-normal">Actionable Business Impact</span>
@@ -62,6 +71,7 @@
                 </div>
             </div>
 
+            <!-- Separated Relevant Coursework Container Box -->
             <div class="opacity-0 left-slide layout-container pt-2">
                 <div class="motion-card p-6 rounded-xl border border-emerald-950/10 bg-white/85 shadow-md content-block">
                     <span class="text-[10px] font-mono text-emerald-700 block mb-1 font-bold sub-heading-glow">ACADEMIC MODULES</span>
@@ -80,6 +90,7 @@
             </div>
         </section>
 
+        <!-- Technical Expertise Matrix -->
         <section id="skills" class="space-y-3 select-section">
             <div class="border-b border-emerald-950/10 pb-1 overflow-hidden">
                 <span class="text-emerald-700 font-mono text-[9px] tracking-widest uppercase font-bold tracking-pulse">TECHNICAL MATRIX</span>
@@ -124,6 +135,7 @@
             </div>
         </section>
 
+        <!-- Professional Timeline -->
         <section id="experience" class="space-y-3 select-section">
             <div class="border-b border-emerald-950/10 pb-1 overflow-hidden">
                 <span class="text-emerald-700 font-mono text-[9px] tracking-widest uppercase font-bold tracking-pulse">TIMELINE</span>
@@ -145,6 +157,7 @@
             </div>
         </section>
 
+        <!-- Featured Projects Showcase -->
         <section id="projects" class="space-y-3 select-section">
             <div class="border-b border-emerald-950/10 pb-1 overflow-hidden">
                 <span class="text-emerald-700 font-mono text-[10px] tracking-widest uppercase font-bold tracking-pulse">PRODUCTION SHOWCASE</span>
@@ -164,6 +177,7 @@
             </div>
         </section>
 
+        <!-- Playable Game 1 (Markov RPS) -->
         <section id="activities" class="space-y-3 select-section">
             <div class="border-b border-emerald-950/10 pb-1 overflow-hidden">
                 <span class="text-emerald-700 font-mono text-[9px] tracking-widest uppercase font-bold tracking-pulse">CREATIVE EXPERIMENT I</span>
@@ -180,11 +194,12 @@
                 <div class="flex justify-center gap-3">
                     <button onclick="playGame('Rock')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✊ Rock</button>
                     <button onclick="playGame('Paper')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✋ Paper</button>
-                    <button onclick="playGame('Scissors')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✌ Scissors</button>
+                    <button onclick="playGame('Scissors')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-400 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✌ Scissors</button>
                 </div>
             </div>
         </section>
 
+        <!-- Playable Game 2 (Data Pipeline Pattern Solver) -->
         <section id="activities-2" class="space-y-3 select-section">
             <div class="border-b border-emerald-950/10 pb-1 overflow-hidden">
                 <span class="text-emerald-700 font-mono text-[9px] tracking-widest uppercase font-bold tracking-pulse">CREATIVE EXPERIMENT II</span>
@@ -198,12 +213,14 @@
             </div>
         </section>
 
+        <!-- Developer Contact Shell Matrix -->
         <section id="contact" class="space-y-4 select-section">
             <div class="border-b border-emerald-950/10 pb-1 overflow-hidden">
                 <span class="text-emerald-700 font-mono text-[9px] tracking-widest uppercase font-bold tracking-pulse">SECURE SHELL SYSTEM</span>
                 <h2 class="text-xl font-serif font-black text-slate-900 tracking-wider continuous-text-pulse">Connect With Us</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-4 items-stretch layout-container">
+                <!-- Terminal Window -->
                 <div class="motion-card rounded-xl border border-emerald-950/10 bg-[#334155] text-xs font-mono shadow-md overflow-hidden flex flex-col h-full content-block">
                     <div class="bg-[#1e293b] px-4 py-2 flex items-center justify-between border-b border-emerald-950/10">
                         <div class="flex gap-1.5">
@@ -229,6 +246,7 @@
                         <p class="text-slate-400">&gt;&gt;&gt; <span class="animate-pulse text-emerald-400">|</span></p>
                     </div>
                 </div>
+                <!-- Form Window -->
                 <div class="rounded-xl border border-emerald-950/10 bg-white/80 p-6 shadow-sm flex flex-col justify-between h-full content-block">
                     <form class="space-y-3 font-medium text-xs text-slate-600" onsubmit="event.preventDefault();">
                         <div>
