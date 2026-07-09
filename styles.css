@@ -1,57 +1,46 @@
-/* Deep Cinematic Black Overrides */
-html, body {
-    background-color: #000000 !important;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+/* Custom Typography Setups */
+body {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.01em;
 }
 
-/* Modern & Cross-Browser Scrollbar Styling */
-html {
-    scrollbar-width: thin;
-    scrollbar-color: #111111 #000000;
+.font-serif {
+    font-family: 'Cinzel', Georgia, serif;
+    letter-spacing: 0.01em;
 }
 
-/* Webkit Scrollbar Engines (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: #000000;
-}
-::-webkit-scrollbar-thumb {
-    background: #111111;
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #222222;
+/* Clearer Text Styling Attributes inside Cards */
+.highlight-card, .project-card, .edu-card {
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* Cursor Glow Spotlight Tracker */
+/* Tight performance animated cross-hair elements */
 #custom-cursor {
     position: fixed;
     top: 0;
     left: 0;
-    width: 450px;
-    height: 450px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(236, 72, 153, 0.03) 60%, rgba(0, 0, 0, 0) 100%);
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid rgba(16, 185, 129, 0.7);
+    border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
-    z-index: 9;
-    will-change: transform; /* Requests hardware acceleration for fluid cursor tracking */
-    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 9999;
+    will-change: transform;
+    transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), height 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 3D Context Initializers */
-.project-card-container {
-    perspective: 1200px;
-}
-
-.project-card {
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+#custom-cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    background-color: #10b981;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    will-change: transform;
 }
