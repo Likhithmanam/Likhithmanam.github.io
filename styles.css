@@ -12,7 +12,7 @@ renderer.setClearColor(0xf8fafc, 1);
 
 const matrixGroup = new THREE.Group();
 const lineGeometry = new THREE.BufferGeometry();
-const vertexCount = 260; // Denser matrix vertices
+const vertexCount = 260; 
 const pointPositions = new Float32Array(vertexCount * 3);
 
 for(let i=0; i<vertexCount; i++) {
@@ -26,7 +26,7 @@ lineGeometry.setAttribute('position', new THREE.BufferAttribute(pointPositions, 
 const lineMaterial = new THREE.LineBasicMaterial({
     color: 0x059669,
     transparent: true,
-    opacity: 0.24 // High continuous visibility density
+    opacity: 0.24 
 });
 
 const matrixMesh = new THREE.LineLoop(lineGeometry, lineMaterial);
@@ -57,7 +57,6 @@ const animate = () => {
     currentMouseX += (targetMouseX - currentMouseX) * 0.06;
     currentMouseY += (targetMouseY - currentMouseY) * 0.06;
     
-    // Dynamic Vertex updates for continuous distortion mapping
     const posArr = lineGeometry.attributes.position.array;
     for(let i=0; i<vertexCount; i++) {
         const theta = (i / vertexCount) * Math.PI * 30 + (time * warpSpeedCurrent * 10);
@@ -85,7 +84,6 @@ window.addEventListener('resize', () => {
 // 2. GSAP: Letter Splitting & Continuous Entrance Waves
 // ============================================================================
 window.addEventListener('DOMContentLoaded', () => {
-    // Structural splitting for name character loops
     const heroTitle = document.querySelector('#hero-name');
     const textContent = heroTitle.childNodes[0].textContent.trim();
     const secondaryLine = document.querySelector('#hero-name span');
@@ -97,7 +95,6 @@ window.addEventListener('DOMContentLoaded', () => {
     textContent.split("").forEach((letter, idx) => {
         const span = document.createElement('span');
         span.textContent = letter === " " ? "\u00A0" : letter;
-        // Inject offset staggered loops inside inline stylesheet styles
         span.style.animationDelay = `${idx * 0.1}s`;
         wrapper.appendChild(span);
     });
