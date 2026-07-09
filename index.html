@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Likhith M | Premium Analytics Portfolio</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,9 +12,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#f8fafc] text-slate-700 font-sans overflow-x-hidden theme-transition">
+<body class="bg-[#f8fafc] text-slate-700 font-sans overflow-x-hidden relative">
 
-    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10"></canvas>
+    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10 block pointer-events-none"></canvas>
 
     <div id="custom-cursor"></div>
     <div id="custom-cursor-dot"></div>
@@ -97,6 +97,7 @@
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Scikit-learn</span>
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">XGBoost</span>
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">SHAP</span>
+                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Matplotlib</span>
                     </div>
                 </div>
                 <div class="motion-card p-5 rounded-xl bg-white/85 border border-emerald-950/10 shadow-md content-block">
@@ -108,6 +109,8 @@
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Predictive Modeling</span>
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Feature Engineering</span>
                         <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Explainable AI</span>
+                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Data Validation</span>
+                        <span class="px-2 py-0.5 bg-slate-50 rounded text-[11px] font-bold text-slate-700 tag-item">Data Integration</span>
                     </div>
                 </div>
                 <div class="motion-card p-5 rounded-xl bg-white/85 border border-emerald-950/10 shadow-md content-block">
@@ -119,6 +122,7 @@
                         <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-emerald-700 tag-item">Tableau</span>
                         <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-slate-700 tag-item">MySQL</span>
                         <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-slate-700 tag-item">MongoDB</span>
+                        <span class="tag px-2.5 py-1 bg-slate-100 rounded text-xs font-bold text-slate-700 tag-item">Power BI</span>
                     </div>
                 </div>
             </div>
@@ -138,9 +142,12 @@
                         </div>
                         <span class="text-[10px] font-mono text-slate-400 font-bold sub-heading-glow">Telecom Network Infrastructure</span>
                     </div>
-                    <p class="text-slate-700 text-sm leading-relaxed mb-4 font-medium">
-                        Managed infrastructure matrix validations using <span class="highlight-word">Python and SQL architectures</span> to track telemetry logs across 40+ system locations, deploying automated workflows that reclaimed 5+ manual reporting hours weekly.
-                    </p>
+                    <ul class="space-y-2 text-xs text-slate-600 list-disc list-inside leading-relaxed font-medium">
+                        <li>Analyzed operational datasets using Python and SQL to identify trends, anomalies, and performance issues across more than 40 network locations.</li>
+                        <li>Built reusable data processing workflows to clean, validate, and transform datasets, improving reporting accuracy and consistency.</li>
+                        <li>Automated recurring reporting processes using Python and SQL, reducing manual reporting effort by over five hours per week.</li>
+                        <li>Performed exploratory data analysis to uncover operational bottlenecks and support process improvement initiatives.</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -180,7 +187,7 @@
                 <div class="flex justify-center gap-3">
                     <button onclick="playGame('Rock')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✊ Rock</button>
                     <button onclick="playGame('Paper')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✋ Paper</button>
-                    <button onclick="playGame('Scissors')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-600 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✌ Scissors</button>
+                    <button onclick="playGame('Scissors')" class="px-4 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-emerald-400 hover:text-white cursor-pointer transition-all duration-300 shadow-sm">✌ Scissors</button>
                 </div>
             </div>
         </section>
