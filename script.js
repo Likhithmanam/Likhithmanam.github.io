@@ -1,80 +1,108 @@
-// Ensure full DOM parsing finish parameters before launching engines
-window.addEventListener('DOMContentLoaded', () => {
-    // ============================================================================
-    // 1. THREE.JS: Reality-Warp Continuous Geometry Vortex Matrix 
-    // ============================================================================
-    const canvas = document.querySelector('#bg-canvas');
+/* ==========================================================================
+   1. Dynamic 3D Particle & Wave Mesh Background (Three.js)
+   ========================================================================== */
+const initThreeBackground = () => {
+    const canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 50;
 
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0xf8fafc, 1);
 
-    const matrixGroup = new THREE.Group();
-    const lineGeometry = new THREE.BufferGeometry();
-    const vertexCount = 260; 
-    const pointPositions = new Float32Array(vertexCount * 3);
+    // Particle Wave Network Construction
+    const count = 1800;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const originalY = new Float32Array(count);
 
-    for(let i=0; i<vertexCount; i++) {
-        const t = (i / vertexCount) * Math.PI * 30; 
-        pointPositions[i*3] = Math.cos(t) * (1.3 + (i * 0.015));
-        pointPositions[i*3+1] = Math.sin(t) * (1.3 + (i * 0.015));
-        pointPositions[i*3+2] = (i / vertexCount) * 12 - 6;
+    let idx = 0;
+    const xGrid = 60;
+    const zGrid = 30;
+    const spacing = 2.4;
+
+    for (let i = 0; i < xGrid; i++) {
+        for (let j = 0; j < zGrid; j++) {
+            const x = (i - xGrid / 2) * spacing;
+            const z = (j - zGrid / 2) * spacing;
+            const y = Math.sin(i * 0.2) * 2 + Math.cos(j * 0.2) * 2;
+
+            positions[idx * 3] = x;
+            positions[idx * 3 + 1] = y;
+            positions[idx * 3 + 2] = z;
+            originalY[idx] = y;
+            idx++;
+        }
     }
-    lineGeometry.setAttribute('position', new THREE.BufferAttribute(pointPositions, 3));
 
-    const lineMaterial = new THREE.LineBasicMaterial({
-        color: 0x059669,
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+    // Generate circular particle texture
+    const createParticleTexture = () => {
+        const pCanvas = document.createElement('canvas');
+        pCanvas.width = 64;
+        pCanvas.height = 64;
+        const ctx = pCanvas.getContext('2d');
+        const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 30);
+        grad.addColorStop(0, 'rgba(52, 211, 153, 1)');
+        grad.addColorStop(0.4, 'rgba(16, 185, 129, 0.6)');
+        grad.addColorStop(1, 'rgba(11, 17, 30, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(32, 32, 30, 0, Math.PI * 2);
+        ctx.fill();
+        return new THREE.CanvasTexture(pCanvas);
+    };
+
+    const material = new THREE.PointsMaterial({
+        size: 1.4,
+        map: createParticleTexture(),
         transparent: true,
-        opacity: 0.24 
+        blending: THREE.AdditiveBlending,
+        depthWrite: false
     });
 
-    const matrixMesh = new THREE.LineLoop(lineGeometry, lineMaterial);
-    matrixGroup.add(matrixMesh);
-    scene.add(matrixGroup);
-    camera.position.z = 6.5;
+    const particles = new THREE.Points(geometry, material);
+    particles.rotation.x = 0.55;
+    scene.add(particles);
 
-    let targetMouseX = 0, targetMouseY = 0;
-    let currentMouseX = 0, currentMouseY = 0;
+    // Mouse tracking for dynamic 3D camera parallax
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
 
     window.addEventListener('mousemove', (e) => {
-        targetMouseX = (e.clientX - window.innerWidth / 2) * 0.012; 
-        targetMouseY = (e.clientY - window.innerHeight / 2) * 0.012;
+        mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
     });
 
-    let warpSpeedTarget = 0.02;
-    let warpSpeedCurrent = 0.02;
-
-    window.addEventListener('scroll', () => {
-        warpSpeedTarget = 0.18;
-        setTimeout(() => { warpSpeedTarget = 0.02; }, 100);
-    });
+    // Clock for wave oscillation
+    const clock = new THREE.Clock();
 
     const animate = () => {
-        const time = performance.now() * 0.001;
-        
-        warpSpeedCurrent += (warpSpeedTarget - warpSpeedCurrent) * 0.08;
-        currentMouseX += (targetMouseX - currentMouseX) * 0.06;
-        currentMouseY += (targetMouseY - currentMouseY) * 0.06;
-        
-        const posArr = lineGeometry.attributes.position.array;
-        for(let i=0; i<vertexCount; i++) {
-            const theta = (i / vertexCount) * Math.PI * 30 + (time * warpSpeedCurrent * 10);
-            posArr[i*3] = Math.cos(theta) * (1.4 + Math.sin(time * 1.8 + i * 0.07) * 0.55);
-            posArr[i*3+1] = Math.sin(theta) * (1.4 + Math.cos(time * 1.8 + i * 0.07) * 0.55);
+        const time = clock.getElapsedTime();
+        const pos = geometry.attributes.position.array;
+
+        for (let i = 0; i < count; i++) {
+            const ix = pos[i * 3];
+            const iz = pos[i * 3 + 2];
+            pos[i * 3 + 1] = originalY[i] + Math.sin(time * 1.5 + ix * 0.15 + iz * 0.1) * 2.8;
         }
-        lineGeometry.attributes.position.needsUpdate = true;
-        
-        matrixGroup.rotation.z = time * 0.08;
-        matrixGroup.position.x = currentMouseX * 2.2; 
-        matrixGroup.position.y = -currentMouseY * 2.2;
+        geometry.attributes.position.needsUpdate = true;
+
+        // Smooth camera dampening
+        targetX += (mouseX * 8 - targetX) * 0.05;
+        targetY += (-mouseY * 8 - targetY) * 0.05;
+        camera.position.x = targetX;
+        camera.position.y = targetY + 12;
+        camera.lookAt(0, 0, 0);
 
         renderer.render(scene, camera);
-        window.requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
     };
     animate();
 
@@ -83,141 +111,206 @@ window.addEventListener('DOMContentLoaded', () => {
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
+};
 
-    // ============================================================================
-    // 2. GSAP: Entrance Presentation Waves
-    // ============================================================================
-    const tl = gsap.timeline();
-    tl.fromTo('#hero-name', { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' });
-    tl.to('.left-slide', { x: 0, opacity: 1, duration: 1.1, stagger: 0.14, ease: 'power3.out' }, '-=0.9');
-    generateNewPuzzle();
-});
+/* ==========================================================================
+   2. Smooth Custom Cursor
+   ========================================================================== */
+const initCustomCursor = () => {
+    const cursor = document.getElementById('custom-cursor');
+    const dot = document.getElementById('custom-cursor-dot');
+    if (!cursor || !dot) return;
 
-// ============================================================================
-// 3. MOTION MATRIX BOUNDS & 3D INTERACTIVE CARD TILT
-// ============================================================================
-const cursorOuter = document.getElementById('custom-cursor');
-const cursorInner = document.getElementById('custom-cursor-dot');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
 
-window.addEventListener('mousemove', (e) => {
-    if(cursorInner && cursorOuter) {
-        gsap.to(cursorInner, { x: e.clientX, y: e.clientY, duration: 0.01 });
-        gsap.to(cursorOuter, { x: e.clientX, y: e.clientY, duration: 0.2, ease: 'power2.out' });
-    }
-});
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+    });
 
-document.querySelectorAll('.motion-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const bounds = card.getBoundingClientRect();
-        const mouseX = e.clientX - bounds.left - (bounds.width / 2);
-        const mouseY = e.clientY - bounds.top - (bounds.height / 2);
-        
-        gsap.to(card, {
-            rotateX: (mouseY / (bounds.height / 2)) * -14, 
-            rotateY: (mouseX / (bounds.width / 2)) * 14,
-            scale: 1.025,
-            borderColor: '#059669',
-            boxShadow: '0 25px 50px -12px rgba(5, 150, 105, 0.14)',
-            duration: 0.25,
-            ease: 'power2.out'
+    const render = () => {
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(render);
+    };
+    render();
+
+    // Hover scale effects
+    const interactiveElements = document.querySelectorAll('a, button, input, textarea, .tilt-card');
+    interactiveElements.forEach((el) => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+    });
+};
+
+/* ==========================================================================
+   3. 3D Card Hover Tilt Dynamics
+   ========================================================================== */
+const initCardTilt = () => {
+    const cards = document.querySelectorAll('.tilt-card');
+    cards.forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = -(y / rect.height) * 10;
+            const rotateY = (x / rect.width) * 10;
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
         });
     });
+};
 
-    card.addEventListener('mouseleave', () => {
-        gsap.to(card, { rotateX: 0, rotateY: 0, scale: 1, borderColor: '', boxShadow: '', duration: 0.5, ease: 'power3.out' });
-    });
-});
-
-document.querySelectorAll('a, button, input, textarea').forEach(elem => {
-    elem.addEventListener('mouseenter', () => {
-        if(cursorOuter) gsap.to(cursorOuter, { width: 28, height: 28, scale: 1.3, borderColor: '#059669', duration: 0.2 });
-    });
-    elem.addEventListener('mouseleave', () => {
-        if(cursorOuter) gsap.to(cursorOuter, { width: 14, height: 14, scale: 1, borderColor: '#059669', duration: 0.2 });
-    });
-});
-
-// ============================================================================
-// 4. MARKOV CHAIN LOGIC RUNNER
-// ============================================================================
-let userWins = 0;
-let aiWins = 0;
-let matchHistory = [];
-
-function playGame(userMove) {
-    const choices = ['Rock', 'Paper', 'Scissors'];
-    let prediction = choices[Math.floor(Math.random() * 3)];
-    
-    if (matchHistory.length > 2) {
-        const lastMove = matchHistory[matchHistory.length - 1];
-        if (lastMove === 'Rock') prediction = 'Paper';
-        if (lastMove === 'Paper') prediction = 'Scissors';
-        if (lastMove === 'Scissors') prediction = 'Rock';
+/* ==========================================================================
+   4. GSAP Scroll & Entrance Animations
+   ========================================================================== */
+const initGSAPAnimations = () => {
+    if (typeof gsap === 'undefined') return;
+    if (typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
     }
-    
-    matchHistory.push(userMove);
-    let aiMove = prediction;
-    let result = "";
-    
-    if (userMove === aiMove) {
-        result = `Tie game! Both selected ${userMove}.`;
-    } else if (
-        (userMove === 'Rock' && aiMove === 'Scissors') ||
-        (userMove === 'Paper' && aiMove === 'Rock') ||
-        (userMove === 'Scissors' && aiMove === 'Paper')
-    ) {
-        userWins++;
-        result = `You Win! Engine predicted ${aiMove}.`;
+
+    gsap.utils.toArray('.gs-reveal').forEach((elem) => {
+        gsap.from(elem, {
+            scrollTrigger: {
+                trigger: elem,
+                start: 'top 88%',
+                toggleActions: 'play none none none'
+            },
+            y: 35,
+            opacity: 0,
+            duration: 0.9,
+            ease: 'power3.out'
+        });
+    });
+};
+
+/* ==========================================================================
+   5. Interactive Lab 1: Markov Chain Rock-Paper-Scissors
+   ========================================================================== */
+const choices = ['Rock', 'Paper', 'Scissors'];
+const winsAgainst = { Rock: 'Scissors', Paper: 'Rock', Scissors: 'Paper' };
+const losesTo = { Rock: 'Paper', Paper: 'Scissors', Scissors: 'Rock' };
+
+// Transition frequency matrix: [prevMove][nextMove]
+const markovChain = {
+    Rock: { Rock: 1, Paper: 1, Scissors: 1 },
+    Paper: { Rock: 1, Paper: 1, Scissors: 1 },
+    Scissors: { Rock: 1, Paper: 1, Scissors: 1 }
+};
+
+let lastUserMove = null;
+let userScore = 0;
+let aiScore = 0;
+
+window.playGame = (userMove) => {
+    let aiPredict = 'Rock';
+
+    if (lastUserMove) {
+        const trans = markovChain[lastUserMove];
+        if (trans.Paper > trans.Rock && trans.Paper > trans.Scissors) {
+            aiPredict = 'Paper';
+        } else if (trans.Scissors > trans.Rock && trans.Scissors > trans.Paper) {
+            aiPredict = 'Scissors';
+        } else {
+            aiPredict = 'Rock';
+        }
+        markovChain[lastUserMove][userMove]++;
     } else {
-        aiWins++;
-        result = `AI Wins! Engine successfully predicted ${aiMove}.`;
+        aiPredict = choices[Math.floor(Math.random() * choices.length)];
     }
-    
-    document.getElementById('user-score').textContent = userWins;
-    document.getElementById('ai-score').textContent = aiWins;
-    document.getElementById('game-status').innerHTML = `<strong>${result}</strong>`;
-}
 
-// ============================================================================
-// 5. RECURSIVE DATA PATTERN PUZZLE GAME RUNNER
-// ============================================================================
+    const aiMove = losesTo[aiPredict];
+    lastUserMove = userMove;
+
+    const status = document.getElementById('game-status');
+    const userScoreEl = document.getElementById('user-score');
+    const aiScoreEl = document.getElementById('ai-score');
+
+    if (userMove === aiMove) {
+        status.innerHTML = `<span class="text-amber-400">Draw!</span> Both chose ${userMove}. AI predicted ${aiPredict}.`;
+    } else if (winsAgainst[userMove] === aiMove) {
+        userScore++;
+        userScoreEl.textContent = userScore;
+        status.innerHTML = `<span class="text-emerald-400 font-bold">You Won!</span> ${userMove} beats ${aiMove}.`;
+    } else {
+        aiScore++;
+        aiScoreEl.textContent = aiScore;
+        status.innerHTML = `<span class="text-rose-400 font-bold">AI Won!</span> Countered with ${aiMove} based on Markov model.`;
+    }
+};
+
+/* ==========================================================================
+   6. Interactive Lab 2: Data Sequence Anomaly Puzzle
+   ========================================================================== */
 let puzzleScore = 0;
-let correctAnomalyValue = 0;
-
-function generateNewPuzzle() {
+const initAnomalyPuzzle = () => {
     const container = document.getElementById('sequence-container');
+    const scoreEl = document.getElementById('puzzle-score');
     if (!container) return;
-    container.innerHTML = "";
-    
-    const start = Math.floor(Math.random() * 20) + 5;
-    const step = Math.floor(Math.random() * 8) + 3;
-    let sequence = [];
-    
-    for (let i = 0; i < 5; i++) {
-        sequence.push(start + (i * step));
+
+    container.innerHTML = '';
+    const start = Math.floor(Math.random() * 10) + 2;
+    const diff = Math.floor(Math.random() * 6) + 3;
+    const length = 5;
+    const anomalyIndex = Math.floor(Math.random() * length);
+
+    const seq = [];
+    for (let i = 0; i < length; i++) {
+        if (i === anomalyIndex) {
+            seq.push(start + i * diff + (Math.random() > 0.5 ? 4 : -3));
+        } else {
+            seq.push(start + i * diff);
+        }
     }
-    
-    const anomalyIndex = Math.floor(Math.random() * 5);
-    correctAnomalyValue = sequence[anomalyIndex] + (Math.random() > 0.5 ? 4 : -4);
-    sequence[anomalyIndex] = correctAnomalyValue;
-    
-    sequence.forEach(val => {
+
+    seq.forEach((val, idx) => {
         const btn = document.createElement('button');
-        btn.className = "px-4 py-2 bg-[#f1f5f9] border border-slate-200 rounded-xl font-bold font-mono text-xs text-slate-800 hover:border-emerald-500 cursor-pointer transition-all tag-item";
+        btn.className = 'px-4 py-2.5 bg-slate-800 border border-slate-700 hover:border-brand-400 text-white font-mono font-bold rounded-xl text-xs transition-all duration-200';
         btn.textContent = val;
-        btn.onclick = () => checkPuzzleAnswer(val);
+        btn.onclick = () => {
+            if (idx === anomalyIndex) {
+                puzzleScore += 10;
+                scoreEl.textContent = puzzleScore;
+                btn.className = 'px-4 py-2.5 bg-emerald-600 text-white font-mono font-bold rounded-xl text-xs animate-bounce';
+                setTimeout(initAnomalyPuzzle, 700);
+            } else {
+                btn.className = 'px-4 py-2.5 bg-rose-600 text-white font-mono font-bold rounded-xl text-xs';
+            }
+        };
         container.appendChild(btn);
     });
-}
+};
 
-function checkPuzzleAnswer(selectedVal) {
-    const statusText = document.getElementById('puzzle-score');
-    if (selectedVal === correctAnomalyValue) {
-        puzzleScore++;
-        statusText.textContent = puzzleScore;
-        generateNewPuzzle();
-    } else {
-        if(puzzleScore > 0) puzzleScore--;
-        statusText.textContent = puzzleScore;
-    }
-}
+/* ==========================================================================
+   7. Form Submission Handler
+   ========================================================================== */
+window.handleFormSubmit = (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const origText = btn.textContent;
+    btn.textContent = 'TRANSMISSION RECEIVED ✓';
+    btn.classList.add('bg-emerald-400');
+    setTimeout(() => {
+        btn.textContent = origText;
+        btn.classList.remove('bg-emerald-400');
+        e.target.reset();
+    }, 3000);
+};
+
+/* ==========================================================================
+   Bootstrap Lifecycle
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    initThreeBackground();
+    initCustomCursor();
+    initCardTilt();
+    initGSAPAnimations();
+    initAnomalyPuzzle();
+});
